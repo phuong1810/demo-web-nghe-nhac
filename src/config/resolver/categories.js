@@ -28,42 +28,11 @@ module.exports = {
             return category;
         },
         async deleteCategory(_, {categoryId}){
-            const category = await Post.findById(postId);
-            
-            
-             if (category) {
-                return "success";
-            }
-            return "error";
-        },
-        async deleteCategory(_, {categoryId}){
-
             const category = await Category.findById(categoryId);
-
-            if (category) {
-                return "success";
+             if (category) {
+                return await Category.findByIdAndDelete(categoryId)
             }
             return "error";
-            // const totalBefore = category.length;
-
-            // const day = category.find(day => day.id === id);
-
-            // let removed = false;
-      
-            // if (day) {
-            //     category = category.filter(day => day.id !== id);
-            //   removed = true;
-            // }
-      
-            // const totalAfter = category.length;
-      
-            // return {
-            //   removed,
-            //   category,
-            //   totalAfter,
-            //   day
-            // };
-          
-        },
+        }
     }
 }
