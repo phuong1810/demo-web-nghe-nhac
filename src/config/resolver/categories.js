@@ -9,6 +9,14 @@ module.exports = {
             } catch (err) {
                 throw new Error(err)
             }
+        },
+        async getCategoriesById(_, { id }) {
+            try{
+                const category = await Category.findById(id);
+                return category;
+            } catch (err) {
+                return null;
+            }
         }
     },
     Mutation:{
@@ -27,12 +35,29 @@ module.exports = {
             // return "error";
             return category;
         },
-        async deleteCategory(_, {categoryId}){
-            const category = await Category.findById(categoryId);
-             if (category) {
-                return await Category.findByIdAndDelete(categoryId)
+        async updateCategory (_, { id, name }) {
+            
+            try {
+                const category = await Category.findById(id);
+                if (category) {
+                    category.name = name;
+                    await category.save();
+                    return category
+                }
+            } catch (e) {
+               return "error";
             }
-            return "error";
+        },
+        async deleteCategory(_, {categoryId}){
+            try {
+                const category = await Category.findById(categoryId);
+                if (category) {
+                    const data = await Category.findByIdAndDelete(categoryId);
+                    return "success";
+                }
+            } catch (e) {
+               return "error";
+            }
         }
     }
 }

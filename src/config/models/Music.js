@@ -6,6 +6,7 @@ const MusicSchema = new Schema({
     thumbnailUrl: { type: String, maxLength: 255},
     singer: { type: String, maxLength: 255},
     category: { type: String, maxLength: 255},
+    status: { type: String, maxLength: 255},
     updateAt: { type: Date, default: Date.now }
 });
 

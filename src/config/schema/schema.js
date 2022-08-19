@@ -28,7 +28,9 @@ const typeDefs = gql`
     #Root type
     type Query{
         getCategories: [Category]
+        getCategoriesById(id: String): Category
         getMusics: [Music]
+        getMusicById(id: String): Music
         getUsers: [User]
     }
 
@@ -53,9 +55,13 @@ const typeDefs = gql`
     type Mutation {
         register(registerInput: RegisterInput): User!
         login(username: String!, password: String!): User!
+
         createMusic(musicInput: MusicInput): Music!
+        updateMusic(id: String!, name: String!,singer: String,thumbnailUrl: String,status: String,category: String):Music!        
+        deleteMusic(musicId: String!): String!
 
         createCategory(name: String!): Category!
+        updateCategory(id: String!, name: String!):Category!        
         deleteCategory(categoryId: String!): String!
         
     }
