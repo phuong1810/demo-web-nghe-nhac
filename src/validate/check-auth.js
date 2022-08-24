@@ -4,7 +4,7 @@ const { AuthenticationError } = require("apollo-server");
 module.exports = (req) => {
   // context == { ... headers }
   if (req.body) {
-    let listIgnore = ["login", "register", "getMusics"];
+    let listIgnore = ["login", "register", "getMusicsFE"];
     let operationName = req.body.operationName;
     if (operationName && !listIgnore.includes(operationName)) {
       const authHeader = req.headers.authorization;
